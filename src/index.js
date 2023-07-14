@@ -69,32 +69,35 @@ function Header() {
 }
 
 function Menu() {
+	const numPizzas = pizzaData.length;
 	return (
 		<main className="menu">
 			<h2>Our menu</h2>
-			{pizzaData.map((pizza, index) => (
-				<Pizza
-					key={index}
-					name={pizza.name}
-					ingredients={pizza.ingredients}
-					photoName={pizza.photoName}
-					price={pizza.price}
-				/>
-			))}
+			<ul className="pizzas">
+				{pizzaData.map((pizza, index) => (
+					<Pizza
+						key={index}
+						name={pizza.name}
+						ingredients={pizza.ingredients}
+						photoName={pizza.photoName}
+						price={pizza.price}
+					/>
+				))}
+			</ul>
 		</main>
 	);
 }
 
 function Pizza(pizza) {
 	return (
-		<div className="pizza">
-			<img src={pizza.photoName} alt={pizza.name} className="pizzas" />
+		<li className="pizza">
+			<img src={pizza.photoName} alt={pizza.name} />
 			<div>
 				<h3>{pizza.name}</h3>
 				<p>{pizza.ingredients}</p>
-				<span>{pizza.price}</span>
+				<span>{pizza.soldOut ? "SOLD OUT" : pizza.price}</span>
 			</div>
-		</div>
+		</li>
 	);
 }
 
